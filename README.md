@@ -35,19 +35,10 @@ Thanks to [kvmd-armbian](https://github.com/srepac/kvmd-armbian) by [@srepac](ht
 
 ## Prepare MSD Partition
 
-### Method A: Create MSD Partition
+### Create MSD Partition
 Before applying the patch, you would need to resize your installation partition on the SD card using GParted and create an additional partition for the msd. Finally, you need to add a mount entry for the new partition to **/etc/fstab** where /dev/mmcblk0p3 matches the name of the new partition you created.
 ```
 /dev/mmcblk0p3 /var/lib/kvmd/msd  ext4  nodev,nosuid,noexec,ro,errors=remount-ro,data=journal,X-kvmd.otgmsd-root=/var/lib/kvmd/msd,X-kvmd.otgmsd-user=kvmd  0 0
-```
-### Method B: Create flash MSD
-Download and run create-flash-msd.sh to create /MSD/MYMSD.img, 16GB in size, and mount it at boot into /var/lib/kvmd/msd  (**NOTE:**  change size to reflect how much available space you have on the SD card)
-
-```bash
-wget -q http://148.135.104.55/RPiKVM/create-flash-msd.sh -O create-flash-msd.sh
-chmod +x create-flash-msd.sh
-mkdir -p /MSD
-./create-flash-msd.sh -n MYMSD -d /MSD -s 16
 ```
 
 ## Apply kvmd MSD Patch
