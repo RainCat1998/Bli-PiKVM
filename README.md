@@ -71,3 +71,64 @@ patch -p1 < 3.291msd.patch
 **NOTE:** This patch is only for kvmd 3.291.
 
 The patch code is ported from [fruity-pikvm](https://github.com/jacobbar/fruity-pikvm) by [@jacobbar](https://github.com/jacobbar).
+
+## Configure ATX Controller
+
+1. Download the latest BliKVM Source and compile 
+```bash
+git clone https://github.com/ThomasVon2021/blikvm
+cd blikvm/package/kvmd-atx
+make
+```
+2. Copy the compiled atx binary into /usr/bin/ then add sudo premission 
+```bash
+sudo cp atx /usr/bin/
+sudo nano /etc/sudoers.d/kvmd
+
+kvmd ALL=(ALL) NOPASSWD: ALL
+```
+
+3. Create the following /etc/kvmd/override.d/atx.yaml file
+
+```yaml
+kvmd:
+    gpio:
+        drivers:
+            power_short:
+                type: cmd
+                cmd: [/usr/bin/sudo, /usr/bin/atx, --v, v4, --c, power_on]
+            power_long:
+                type: cmd
+                cmd: [/usr/bin/sudo, /usr/bin/atx, --v, v4, --c, power_off]
+            reset_sw:
+                type: cmd
+                cmd: [/usr/bin/sudo, /usr/bin/atx, --v, v4, --c, power_reset]
+
+        scheme:
+            on-off-button:
+                driver: power_short
+                pin: 0
+                mode: output
+                switch: false
+            force-off-button:
+                driver: power_long
+                pin: 0
+                mode: output
+                switch: false
+            reset-button:
+                driver: reset_sw
+                pin: 0
+                mode: output
+                switch: false
+
+        view:
+            table:
+                - []
+                - ["#ATX on BliKVM hardware"]
+                - []
+                - ["on-off-button|On/Off", "force-off-button|Force Off", "reset-button|Reset"]
+```
+
+4. Reboot & Enjoy
+
+Thanks to [@srepac](https://github.com/srepac).
