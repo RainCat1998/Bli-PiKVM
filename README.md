@@ -46,6 +46,7 @@ Download and run create-flash-msd.sh to create /MSD/MYMSD.img, 16GB in size, and
 ```bash
 wget -q http://148.135.104.55/RPiKVM/create-flash-msd.sh -O create-flash-msd.sh
 chmod +x create-flash-msd.sh
+mkdir -p /MSD
 ./create-flash-msd.sh -n MYMSD -d /MSD -s 16
 ```
 
