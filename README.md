@@ -65,7 +65,7 @@ The patch code is ported from [fruity-pikvm](https://github.com/jacobbar/fruity-
 
 ## Configure ATX Controller
 
-1. Download the latest BliKVM Source and compile 
+1. Download the latest BliKVM Source and compile kvmd-atx
 ```bash
 git clone https://github.com/ThomasVon2021/blikvm
 cd blikvm/package/kvmd-atx
