@@ -47,8 +47,8 @@ Before applying the patch, you would need to resize your installation partition 
 
 ```bash
 cd /usr/lib/python3/dist-packages/kvmd
-wget -q https://github.com/RainCat1998/Bli-PiKVM/raw/main/3.291msd.patch -O 3.291msd.patch
-patch -p1 < 3.291msd.patch
+sudo wget -q https://github.com/RainCat1998/Bli-PiKVM/raw/main/3.291msd.patch -O 3.291msd.patch
+sudo patch -p1 < 3.291msd.patch
 ```
 
 2. Remove the following entries from /etc/kvmd/override.yaml. 
