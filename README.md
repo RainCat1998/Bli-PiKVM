@@ -7,7 +7,7 @@ ssh blikvm@BLIKVM_IP
 
 sudo apt update
 sudo apt upgrade
-systemctl disable --now kvmd-hid kvmd-janus.service kvmd-video.service kvmd-web.service
+sudo systemctl disable --now kvmd-hid kvmd-janus.service kvmd-video.service kvmd-web.service
 sudo reboot
 ```
 
