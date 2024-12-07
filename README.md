@@ -1,6 +1,11 @@
 # Bli-PiKVM
 Install Pi-KVM on BliKVM v4 Allwinner.
 
+## Change Filesystem to Read Write mode to allow changes
+```bash
+rw
+```
+
 ## Disable BliKVM services
 ```bash
 ssh blikvm@BLIKVM_IP
